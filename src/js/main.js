@@ -71,6 +71,13 @@ function saveFavoriteArr(animeFav){
 
 // CAMINO 2:
 function saveFavorites(fav){
+  console.log(fav);
+  let pruebaObj = {
+    name: fav.p,
+    img: fav.img,
+    id: fav.id
+  };
+  console.log(pruebaObj);
   const idItem = fav.id;
   let pruebaAgrega = false;
 
@@ -118,13 +125,21 @@ function handlerClickFav(event){
   //const favorite = renderFavs(animeFav);
   // Guardo favorito en array
   //saveFavoriteArr(favorite);
-  // Guardo array en localStorage
 
   // CAMINO 2:
   // Guardo favorito en array
   const arrFavorites = saveFavorites(animeFav);
+  // guardo en localStorage
+  console.log(arrFavorites);
+  function setInLocalStorage(){
+    const stringifyArrFavs = JSON.stringify(arrFavorites);
+    console.log(stringifyArrFavs);
+    localStorage.setItem('anime', stringifyArrFavs);
+  }
+  setInLocalStorage();
   // Renderizo el elemento clicado en favoritos
   renderFavs2(arrFavorites);
+
 }
 
 function handlerClickDeleteFav(event){
