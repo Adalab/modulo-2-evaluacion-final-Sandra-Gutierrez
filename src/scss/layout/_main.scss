@@ -9,6 +9,12 @@
     padding: 20px;
     &__list{
         list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        & li img {
+            width: 120px;
+        }
     }
 }
 .sectionRes{
