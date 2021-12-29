@@ -7,9 +7,29 @@
     background-color: azure;
     width: 30vw;
     padding: 20px;
+    &__list{
+        list-style: none;
+    }
 }
 .sectionRes{
     background-color: plum;
     width: 70vw;
     padding: 20px;
+    &__list{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &--item{
+            background-color: white;
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+            width: min-content;
+        }
+    }
+}
+.favorit{
+    background-color: black;
+    color: white;
 }

@@ -26,7 +26,7 @@ function getAnimeResults(){
       for(let i = 0; i < arrResults.length ; i++){
         const imgAnime = data.results[i].image_url;
         const titleAnime = data.results[i].title;
-        const itemList = `<li class='js-itemList'><img src="${imgAnime}"><p>${titleAnime}</p></li>`;
+        const itemList = `<li class='js-itemList sectionRes__list--item'><img src="${imgAnime}"><p>${titleAnime}</p></li>`;
         listRes.innerHTML += itemList;
       }
       // Añado evento click a los elementos de mi lista
@@ -61,10 +61,11 @@ function renderFavs(fav){
 
 function handlerClickFav(event){
   const animeFav = event.currentTarget;
+  // Añado clase favorit al elemento clicado
+  animeFav.classList.add('favorit');
   // Renderizo el elemento clicado en favoritos
   renderFavs(animeFav);
 }
-
 
 // Listeners
 btnSearch.addEventListener('click', handlerClickSearch);
