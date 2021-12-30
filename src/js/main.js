@@ -23,8 +23,21 @@ getFromLocalStorage();
 
 
 function handlerClickDeleteFav(event){
-  console.log(event.currentTarget);
-  console.log('Borrar favorito!');
+  // Consigo el id del item clicado
+  const elementDeleteFav = event.currentTarget.parentElement;
+  const idDeleteFav = elementDeleteFav.id;
+  // Recorro mi array de favs comprobando el id
+  for(let i = 0 ; i < arrFavs.length ; i++){
+    if(idDeleteFav === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
+      arrFavs.splice(i, 1);
+      break;
+    }
+  }
+  // Vuelvo a renderizar favoritos
+  renderFavs(arrFavs);
+  // Actualizo el localStorage
+  setInLocalStorage(arrFavs);
+
 }
 
 
