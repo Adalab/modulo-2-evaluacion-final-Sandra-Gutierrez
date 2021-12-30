@@ -47,7 +47,7 @@ function handlerClickSearch(event){
   getAnimeResults();
 }
 
-// Leo el localStorage
+// Leo el localStorage y renderizo favs si al cachear encuentro favs
 function getFromLocalStorage(){
   const localStorageData = localStorage.getItem('anime');
   console.log('Get funciona');
