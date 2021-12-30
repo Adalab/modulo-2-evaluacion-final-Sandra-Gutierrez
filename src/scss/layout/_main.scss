@@ -1,12 +1,28 @@
 
 .main{
     display: flex;
-    padding: 20px;
+    padding: 20px 200px;
+    font-family: 'Roboto';
 }
 .sectionFav{
     background-color: azure;
     width: 30vw;
     padding: 20px;
+    border-right: 2px solid black;
+    &__div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &--btnReset{
+            padding: 5px 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            font-family: 'Roboto';
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
     &__list{
         list-style: none;
         display: flex;

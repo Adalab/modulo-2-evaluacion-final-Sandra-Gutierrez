@@ -1,4 +1,34 @@
 .header{
-    background-color:powderblue;
-    padding: 20px
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 36%, rgba(215,0,215,1) 91%);
+    padding: 20px 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: roboto;
+    &__title{
+        color: white;
+        font-weight: 100;
+        font-size: 34px;
+    }
+    &__form{
+        &--text{
+            width: 600px;
+            height: 30px;
+            padding: 8px;
+            border: 1px solid transparent;
+            margin-right: 20px;
+            box-shadow: 1px 1px 5px grey;
+        }
+        &--search{
+            padding: 7px 15px;
+            background-color: black;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            font-family: 'Roboto';
+            cursor: pointer;
+            font-size: 14px;
+        }
+    }
 }
