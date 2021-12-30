@@ -47,6 +47,18 @@ function handlerClickSearch(event){
   getAnimeResults();
 }
 
+// Leo el localStorage
+function getFromLocalStorage(){
+  const localStorageData = localStorage.getItem('anime');
+  console.log('Get funciona');
+  if(localStorageData !== null){
+    arrFavs = JSON.parse(localStorageData);
+    console.log('No esta vacio, debo pintar');
+    renderFavs2(arrFavs);
+  }
+}
+getFromLocalStorage();
+
 // CAMINO 1:
 function renderFavs(fav){
   // Clono el nodo fav
@@ -79,7 +91,6 @@ function saveFavorites(fav){
     img: imgFav.src,
     id: fav.id
   };
-  console.log(favObj);
 
   const idItem = favObj.id;
   let addFav = false;
@@ -138,7 +149,7 @@ function handlerClickFav(event){
   // CAMINO 2:
   // Convierto favorito en objeto y lo guardo en array
   const arrFavorites = saveFavorites(animeFav);
-  // guardo en localStorage
+  // Guardo en localStorage
   setInLocalStorage(arrFavorites);
 
   // Renderizo el elemento clicado en favoritos
