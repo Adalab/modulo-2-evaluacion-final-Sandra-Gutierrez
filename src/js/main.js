@@ -71,34 +71,37 @@ function saveFavoriteArr(animeFav){
 
 // CAMINO 2:
 function saveFavorites(fav){
-  console.log(fav);
-  let pruebaObj = {
-    name: fav.p,
-    img: fav.img,
+  // Guardo mis datos en un objeto
+  let imgFav = fav.querySelector('img');
+  let titleFav = fav.querySelector('p');
+  let favObj = {
+    name: titleFav.innerHTML,
+    img: imgFav.src,
     id: fav.id
   };
-  console.log(pruebaObj);
-  const idItem = fav.id;
-  let pruebaAgrega = false;
+  console.log(favObj);
+
+  const idItem = favObj.id;
+  let addFav = false;
 
   if(arrFavs.length === 0){
     // Si mi array esta vacio agrego el primer anime
-    arrFavs.push(fav);
+    arrFavs.push(favObj);
   }else{
     // Si mi array no esta vacio lo recorro y hago comprobaciones
     for(let i = 0 ; i < arrFavs.length ; i++){
       if(arrFavs[i].id !== idItem){
         // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
-        pruebaAgrega = true;
+        addFav = true;
       }else{
         // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
-        pruebaAgrega = false;
+        addFav = false;
         break;
       }
     }
-    if(pruebaAgrega === true){
+    if(addFav === true){
       // Solo cuando esta variable es true agrego el item a mi array de favoritos
-      arrFavs.push(fav);
+      arrFavs.push(favObj);
     }
   }
   return arrFavs;
@@ -106,13 +109,18 @@ function saveFavorites(fav){
 function renderFavs2(arr){
   listFav.innerHTML = '';
   for(let i = 0 ; i < arr.length ; i++){
-    listFav.innerHTML += `<li class='js-itemFav sectionFav__list--item'>${arr[i].innerHTML}<button class='js-deleteBtn sectionFav__list--btn'>Borrar</button></li>`;
+    listFav.innerHTML += `<li id='${arr[i].id}' class='js-itemFav sectionFav__list--item'><img src="${arr[i].img}"><p>${arr[i].name}</p><button class='js-deleteBtn sectionFav__list--btn'>Borrar</button></li>`;
   }
   // Añado el listener a los botones de borrar
   const deleteBtn = document.querySelectorAll('.js-deleteBtn');
   for(let i = 0 ; i < deleteBtn.length ; i++){
     deleteBtn[i].addEventListener('click', handlerClickDeleteFav);
   }
+}
+
+function setInLocalStorage(arrFavs){
+  const stringifyArrFavs = JSON.stringify(arrFavs);
+  localStorage.setItem('anime', stringifyArrFavs);
 }
 
 function handlerClickFav(event){
@@ -126,17 +134,13 @@ function handlerClickFav(event){
   // Guardo favorito en array
   //saveFavoriteArr(favorite);
 
+
   // CAMINO 2:
-  // Guardo favorito en array
+  // Convierto favorito en objeto y lo guardo en array
   const arrFavorites = saveFavorites(animeFav);
   // guardo en localStorage
-  console.log(arrFavorites);
-  function setInLocalStorage(){
-    const stringifyArrFavs = JSON.stringify(arrFavorites);
-    console.log(stringifyArrFavs);
-    localStorage.setItem('anime', stringifyArrFavs);
-  }
-  setInLocalStorage();
+  setInLocalStorage(arrFavorites);
+
   // Renderizo el elemento clicado en favoritos
   renderFavs2(arrFavorites);
 
