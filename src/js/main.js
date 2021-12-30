@@ -24,6 +24,7 @@ getFromLocalStorage();
 
 function handlerClickDeleteFav(event){
   console.log(event.currentTarget);
+  console.log('Borrar favorito!');
 }
 
 
