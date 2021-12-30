@@ -9,6 +9,7 @@ const listFav = document.querySelector('.js-listFav');
 const listRes = document.querySelector('.js-listRes');
 let anime = '';
 let arrFavs = [];
+let arrResults;
 
 // FUNCTIONS:
 // Leo localStorage y renderizo favs si al cachear encuentro favs
@@ -20,6 +21,17 @@ function getFromLocalStorage(){
   }
 }
 getFromLocalStorage();
+
+
+function handlerClickReset(event){
+  event.preventDefault();
+  // Inicializo mi array de favs
+  arrFavs = [];
+  // Vuelvo a renderizar favoritos
+  renderFavs(arrFavs);
+  // Actualizo el localStorage
+  setInLocalStorage(arrFavs);
+}
 
 
 function handlerClickDeleteFav(event){
@@ -112,7 +124,7 @@ function getAnimeResults(){
   fetch(`https://api.jikan.moe/v3/search/anime?q=${anime}`)
     .then( (response) => response.json() )
     .then( (data) => {
-      let arrResults = data.results;
+      arrResults = data.results;
       // Renderizo en HTML la portada y el titulo
       for(let i = 0; i < arrResults.length ; i++){
         const imgAnime = data.results[i].image_url;
@@ -139,3 +151,4 @@ function handlerClickSearch(event){
 
 // LISTENERS
 btnSearch.addEventListener('click', handlerClickSearch);
+btnReset.addEventListener('click', handlerClickReset);
