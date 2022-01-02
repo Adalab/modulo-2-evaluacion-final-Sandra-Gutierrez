@@ -45,6 +45,16 @@ function handlerClickDeleteFav(event){
       break;
     }
   }
+  // Busco en mi array de resultados el elemento con ese id
+  for(let i = 0 ; i < arrResults.length ; i++){
+    let idFavorite = parseInt(idDeleteFav);
+    if(idFavorite === arrResults[i].mal_id){ // Elimino la clase favorit del item en resultados
+      console.log(arrResults[i].mal_id);
+      console.log(arrResults[i]);
+      //arrResults[i].classList.remove('favorit');
+      break;
+    }
+  }
   // Vuelvo a renderizar favoritos
   renderFavs(arrFavs);
   // Actualizo el localStorage

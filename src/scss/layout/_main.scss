@@ -78,6 +78,10 @@
             text-align: center;
             width: min-content;
             box-shadow: 6px 6px 3px #2d2d2d;
+            & p{
+                font-size: 14px;
+                padding: 5px 0px;
+            }
         }
     }
 }
