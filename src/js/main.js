@@ -66,21 +66,37 @@ function saveFavorites(fav){
   const idItem = favObj.id;
   let addFav = false;
 
-  if(arrFavs.length === 0){ // Si mi array esta vacio agrego el primer item
-    arrFavs.push(favObj);
-  }else{ // Si mi array NO esta vacio, lo recorro y hago comprobaciones
-    for(let i = 0 ; i < arrFavs.length ; i++){
-      if(arrFavs[i].id !== idItem){ // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
-        addFav = true;
-      }else{ // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
-        addFav = false;
-        break;
+  // Compruebo si mi elemento tiene la clase favorit
+  if(fav.classList.contains('favorit')){ // Si la tiene, agrego a mi array de favs
+    if(arrFavs.length === 0){ // Si mi array esta vacio agrego el primer item
+      arrFavs.push(favObj);
+    }else{ // Si mi array NO esta vacio, lo recorro y hago comprobaciones
+      for(let i = 0 ; i < arrFavs.length ; i++){
+        if(arrFavs[i].id !== idItem){ // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
+          addFav = true;
+        }else{ // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
+          addFav = false;
+          break;
+        }
+      }
+      if(addFav === true){ // Solo cuando es true agrego el item a mi array de favoritos
+        arrFavs.push(favObj);
       }
     }
-    if(addFav === true){ // Solo cuando es true agrego el item a mi array de favoritos
-      arrFavs.push(favObj);
+  }else{ // Si no la tiene elimino de mi array de favs
+    console.log('No es fav');
+    for(let i = 0 ; i < arrFavs.length ; i++){
+      if(favObj.id === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
+        arrFavs.splice(i, 1);
+        break;
+      }
+      // Vuelvo a renderizar favoritos
+      renderFavs(arrFavs);
+      // Actualizo el localStorage
+      setInLocalStorage(arrFavs);
     }
   }
+
   return arrFavs;
 }
 
@@ -92,7 +108,7 @@ function setInLocalStorage(arrFavs){
 function renderFavs(arr){
   listFav.innerHTML = '';
   for(let i = 0 ; i < arr.length ; i++){
-    listFav.innerHTML += `<li id='${arr[i].id}' class='js-itemFav sectionFav__list--item'><img src="${arr[i].img}"><p>${arr[i].name}</p><button class='js-deleteBtn sectionFav__list--btn'>Borrar</button></li>`;
+    listFav.innerHTML += `<li id='${arr[i].id}' class='js-itemFav sectionFav__list--item'><img src="${arr[i].img}"><p>${arr[i].name}</p><i class="fas fa-times-circle js-deleteBtn sectionFav__list--btn"></i></li>`;
   }
   // Añado el listener a los botones de borrar
   const deleteBtn = document.querySelectorAll('.js-deleteBtn');
@@ -104,7 +120,7 @@ function renderFavs(arr){
 function handlerClickFav(event){
   // Añado clase favorit al elemento clicado
   const animeFav = event.currentTarget;
-  animeFav.classList.add('favorit');
+  animeFav.classList.toggle('favorit');
   // Convierto favorito en objeto y lo guardo en array
   const arrFavorites = saveFavorites(animeFav);
   // Guardo en localStorage
