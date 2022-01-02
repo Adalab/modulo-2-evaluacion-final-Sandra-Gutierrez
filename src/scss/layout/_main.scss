@@ -5,14 +5,14 @@
     font-family: 'Roboto';
 }
 .sectionFav{
-    background-color: azure;
-    width: 30vw;
+    width: 25vw;
     padding: 20px;
     border-right: 2px solid black;
     &__div{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 12px;
         &--btnReset{
             padding: 5px 10px;
             border: none;
@@ -21,6 +21,7 @@
             font-family: 'Roboto';
             text-transform: uppercase;
             cursor: pointer;
+            font-size: 12px;
         }
     }
     &__list{
@@ -36,26 +37,46 @@
             text-align: center;
             width: min-content;
             & img {
-                width: 120px;
+                width: 100px;
+                margin-bottom: 5px;
             }
+            & p {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+        }
+        &--btn{
+            background-color: #c20486;
+            border: none;
+            padding: 3px 6px;
+            color: white;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-family: 'Roboto';
+            margin-bottom: 5px;
+            cursor: pointer;
         }
     }
 }
 .sectionRes{
-    background-color: plum;
-    width: 70vw;
+    width: 65vw;
     padding: 20px;
+    &__title{
+        margin-bottom: 12px;
+    }
     &__list{
         list-style: none;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        cursor: pointer;
         &--item{
             background-color: white;
             padding: 5px;
-            margin: 5px;
+            margin: 0px 10px 10px 0px;
             text-align: center;
             width: min-content;
+            box-shadow: 6px 6px 3px #2d2d2d;
         }
     }
 }

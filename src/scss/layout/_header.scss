@@ -1,6 +1,9 @@
+body{
+    background-color: whitesmoke;
+}
 .header{
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 36%, rgba(215,0,215,1) 91%);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 36%, rgba(194,4,134,1) 91%);
     padding: 20px 200px;
     display: flex;
     justify-content: space-between;
@@ -12,16 +15,18 @@
         font-size: 34px;
     }
     &__form{
+        display: flex;
+        align-items: center;
         &--text{
-            width: 600px;
-            height: 30px;
+            width: 400px;
+            height: 25px;
             padding: 8px;
             border: 1px solid transparent;
             margin-right: 20px;
             box-shadow: 1px 1px 5px grey;
         }
         &--search{
-            padding: 7px 15px;
+            padding: 5px 15px;
             background-color: black;
             border: none;
             color: white;
