@@ -162,6 +162,15 @@ function getAnimeResults(){
       for(let i = 0 ; i < itemLi.length ; i++){
         itemLi[i].addEventListener('click', handlerClickFav);
       }
+      // Actualizo la clase favorit en funcion de si esta en favoritos
+      for(let i = 0 ; i < arrFavs.length ; i++){
+        let elementFav = arrFavs[i].id;
+        for(let i = 0 ; i < itemLi.length ; i++){
+          if(itemLi[i].id === elementFav){
+            itemLi[i].classList.toggle('favorit');
+          }
+        }
+      }
     });
 }
 
