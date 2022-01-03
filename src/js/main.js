@@ -49,8 +49,6 @@ function handlerClickDeleteFav(event){
   for(let i = 0 ; i < arrResults.length ; i++){
     let idFavorite = parseInt(idDeleteFav);
     if(idFavorite === arrResults[i].mal_id){ // Elimino la clase favorit del item en resultados
-      console.log(arrResults[i].mal_id);
-      console.log(arrResults[i]);
       //arrResults[i].classList.remove('favorit');
       break;
     }
@@ -94,7 +92,6 @@ function saveFavorites(fav){
       }
     }
   }else{ // Si no la tiene elimino de mi array de favs
-    console.log('No es fav');
     for(let i = 0 ; i < arrFavs.length ; i++){
       if(favObj.id === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
         arrFavs.splice(i, 1);
