@@ -38,9 +38,20 @@ function handlerClickDeleteFav(event){
   // Consigo el id del item clicado
   const elementDeleteFav = event.currentTarget.parentElement;
   const idDeleteFav = elementDeleteFav.id;
+  // Elimino la clase favorit del item de resultados comparando con mi ul
+  let listResults = document.querySelectorAll('.js-itemList');
+  console.log(listResults);
+  for(let i = 0 ; i < listResults.length ; i++){
+    if(idDeleteFav === listResults[i].id){
+      console.log('Coincide');
+      console.log(listResults[i]);
+      listResults[i].classList.toggle('favorit');
+    }
+  }
   // Recorro mi array de favs comprobando el id
   for(let i = 0 ; i < arrFavs.length ; i++){
-    if(idDeleteFav === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
+    // Borro el item que tenga ese id de mi array de favs
+    if(idDeleteFav === arrFavs[i].id){
       arrFavs.splice(i, 1);
       break;
     }
@@ -49,7 +60,6 @@ function handlerClickDeleteFav(event){
   renderFavs(arrFavs);
   // Actualizo el localStorage
   setInLocalStorage(arrFavs);
-
 }
 
 
@@ -81,7 +91,8 @@ function saveFavorites(fav){
       arrFavs.push(favObj);
     }else{ // Si es false, elimino el item de mi array de favoritos
       for(let i = 0 ; i < arrFavs.length ; i++){
-        if(idItem === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
+        if(idItem === arrFavs[i].id){ // Cuando el id de mi item clicado coincide con alguno de mi array
+          // Borro el item que tenga ese id de mi array de favs
           arrFavs.splice(i, 1);
           break;
         }
