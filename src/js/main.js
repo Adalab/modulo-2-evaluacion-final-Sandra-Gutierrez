@@ -137,7 +137,6 @@ function handlerClickFav(event){
   renderFavs(arrFavorites);
 }
 
-
 function takeField(){
   const nameAnime = inputText.value;
   return nameAnime;
