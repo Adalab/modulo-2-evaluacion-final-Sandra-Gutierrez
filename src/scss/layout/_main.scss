@@ -92,8 +92,13 @@
         margin-bottom: 12px;
     }
     &__image{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
         & img{
-            width: 100%;
+            width: 20%;
         }
     }
     &__list{
