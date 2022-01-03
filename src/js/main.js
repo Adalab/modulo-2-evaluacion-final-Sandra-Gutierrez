@@ -38,6 +38,8 @@ function handlerClickReset(event){
   renderFavs(arrFavs);
   // Actualizo el localStorage
   setInLocalStorage(arrFavs);
+  // Borro boton
+  showBtnReset();
 }
 
 
@@ -49,8 +51,6 @@ function handlerClickDeleteFav(event){
   let listResults = document.querySelectorAll('.js-itemList');
   for(let i = 0 ; i < listResults.length ; i++){
     if(idDeleteFav === listResults[i].id){
-      console.log('Coincide');
-      console.log(listResults[i]);
       listResults[i].classList.toggle('favorit');
     }
   }
@@ -108,16 +108,30 @@ function saveFavorites(fav){
   return arrFavs;
 }
 
+// Muestro botón de reset favoritos
+function showBtnReset(){
+  if(arrFavs.length !== 0){
+    btnReset.classList.remove('hidden');
+  }else{
+    btnReset.classList.add('hidden');
+  }
+}
+showBtnReset();
+
+// Guardo en localStorage
 function setInLocalStorage(arrFavs){
   const stringifyArrFavs = JSON.stringify(arrFavs);
   localStorage.setItem('anime', stringifyArrFavs);
 }
 
 function renderFavs(arr){
+  // Renderizo elementos en html
   listFav.innerHTML = '';
   for(let i = 0 ; i < arr.length ; i++){
     listFav.innerHTML += `<li id='${arr[i].id}' class='js-itemFav sectionFav__list--item'><img src="${arr[i].img}"><p>${arr[i].name}</p><i class="fas fa-times-circle js-deleteBtn sectionFav__list--btn"></i></li>`;
   }
+  // Muestro boton reset
+  showBtnReset();
   // Añado el listener a los botones de borrar
   const deleteBtn = document.querySelectorAll('.js-deleteBtn');
   for(let i = 0 ; i < deleteBtn.length ; i++){
