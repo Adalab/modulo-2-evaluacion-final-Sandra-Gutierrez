@@ -72,13 +72,20 @@ function saveFavorites(fav){
     for(let i = 0 ; i < arrFavs.length ; i++){
       if(arrFavs[i].id !== idItem){ // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
         addFav = true;
-      }else{ // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
+      }else{ // Si el id del index si coincide = ya existe en el array (quiero eliminarlo)
         addFav = false;
         break;
       }
     }
     if(addFav === true){ // Solo cuando es true agrego el item a mi array de favoritos
       arrFavs.push(favObj);
+    }else{ // Si es false, elimino el item de mi array de favoritos
+      for(let i = 0 ; i < arrFavs.length ; i++){
+        if(idItem === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
+          arrFavs.splice(i, 1);
+          break;
+        }
+      }
     }
   }
   return arrFavs;
