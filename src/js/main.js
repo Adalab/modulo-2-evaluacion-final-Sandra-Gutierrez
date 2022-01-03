@@ -8,9 +8,10 @@ const btnReset = document.querySelector('.js-btnReset');
 const listFav = document.querySelector('.js-listFav');
 const listRes = document.querySelector('.js-listRes');
 const imgEmptyFavs = document.querySelector('.js-imageFav');
+const imgSearchAnimes = document.querySelector('.js-imageFront');
 let anime = '';
 let arrFavs = [];
-let arrResults;
+let arrResults = [];
 
 // FUNCTIONS:
 // Leo localStorage y renderizo favs si al cachear encuentro favs
@@ -131,6 +132,15 @@ function hiddenImgEmpyFavs(){
 }
 hiddenImgEmpyFavs();
 
+// Oculto imagen de buscar animes
+function hiddenImgSearchAnimes(){
+  if(arrResults.length !== 0){
+    imgSearchAnimes.classList.add('hidden');
+  }else{
+    imgSearchAnimes.classList.remove('hidden');
+  }
+}
+hiddenImgSearchAnimes();
 
 // Guardo en localStorage
 function setInLocalStorage(arrFavs){
@@ -174,33 +184,41 @@ function takeField(){
 
 function getAnimeResults(){
   listRes.innerHTML = '';
-  fetch(`https://api.jikan.moe/v3/search/anime?q=${anime}`)
-    .then( (response) => response.json() )
-    .then( (data) => {
-      arrResults = data.results;
-      // Renderizo en HTML la portada y el titulo
-      for(let i = 0; i < arrResults.length ; i++){
-        const imgAnime = data.results[i].image_url;
-        const titleAnime = data.results[i].title;
-        const idAnime = data.results[i].mal_id;
-        const itemList = `<li id='${idAnime}' class='js-itemList sectionRes__list--item'><img src="${imgAnime}"><p>${titleAnime}</p></li>`;
-        listRes.innerHTML += itemList;
-      }
-      // Añado evento click a los elementos de mi lista
-      const itemLi = document.querySelectorAll('.js-itemList');
-      for(let i = 0 ; i < itemLi.length ; i++){
-        itemLi[i].addEventListener('click', handlerClickFav);
-      }
-      // Actualizo la clase favorit en funcion de si esta en favoritos
-      for(let i = 0 ; i < arrFavs.length ; i++){
-        let elementFav = arrFavs[i].id;
+  //Primero valido si el imput esta vacio, si lo esta, no puedo buscar y pinto mi mensaje
+  if(anime === ''){
+    imgSearchAnimes.classList.remove('hidden');
+  }else{ // Si el input no esta vacio, lo utilizo para hacer mi peticion a la API
+    fetch(`https://api.jikan.moe/v3/search/anime?q=${anime}`)
+      .then( (response) => response.json() )
+      .then( (data) => {
+        arrResults = data.results;
+        // Elimino texto e imagen de portada
+        hiddenImgSearchAnimes();
+        // Renderizo en HTML la portada y el titulo
+        for(let i = 0; i < arrResults.length ; i++){
+          const imgAnime = data.results[i].image_url;
+          const titleAnime = data.results[i].title;
+          const idAnime = data.results[i].mal_id;
+          const itemList = `<li id='${idAnime}' class='js-itemList sectionRes__list--item'><img src="${imgAnime}"><p>${titleAnime}</p></li>`;
+          listRes.innerHTML += itemList;
+        }
+        // Añado evento click a los elementos de mi lista
+        const itemLi = document.querySelectorAll('.js-itemList');
         for(let i = 0 ; i < itemLi.length ; i++){
-          if(itemLi[i].id === elementFav){
-            itemLi[i].classList.toggle('favorit');
+          itemLi[i].addEventListener('click', handlerClickFav);
+        }
+        // Actualizo la clase favorit en funcion de si esta en favoritos
+        for(let i = 0 ; i < arrFavs.length ; i++){
+          let elementFav = arrFavs[i].id;
+          for(let i = 0 ; i < itemLi.length ; i++){
+            if(itemLi[i].id === elementFav){
+              itemLi[i].classList.toggle('favorit');
+            }
           }
         }
-      }
-    });
+      });
+  }
+  
 }
 
 function handlerClickSearch(event){
