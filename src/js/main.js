@@ -45,14 +45,6 @@ function handlerClickDeleteFav(event){
       break;
     }
   }
-  // Busco en mi array de resultados el elemento con ese id
-  for(let i = 0 ; i < arrResults.length ; i++){
-    let idFavorite = parseInt(idDeleteFav);
-    if(idFavorite === arrResults[i].mal_id){ // Elimino la clase favorit del item en resultados
-      //arrResults[i].classList.remove('favorit');
-      break;
-    }
-  }
   // Vuelvo a renderizar favoritos
   renderFavs(arrFavs);
   // Actualizo el localStorage
@@ -74,36 +66,21 @@ function saveFavorites(fav){
   const idItem = favObj.id;
   let addFav = false;
 
-  // Compruebo si mi elemento tiene la clase favorit
-  if(fav.classList.contains('favorit')){ // Si la tiene, agrego a mi array de favs
-    if(arrFavs.length === 0){ // Si mi array esta vacio agrego el primer item
-      arrFavs.push(favObj);
-    }else{ // Si mi array NO esta vacio, lo recorro y hago comprobaciones
-      for(let i = 0 ; i < arrFavs.length ; i++){
-        if(arrFavs[i].id !== idItem){ // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
-          addFav = true;
-        }else{ // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
-          addFav = false;
-          break;
-        }
-      }
-      if(addFav === true){ // Solo cuando es true agrego el item a mi array de favoritos
-        arrFavs.push(favObj);
-      }
-    }
-  }else{ // Si no la tiene elimino de mi array de favs
+  if(arrFavs.length === 0){ // Si mi array esta vacio agrego el primer item
+    arrFavs.push(favObj);
+  }else{ // Si mi array NO esta vacio, lo recorro y hago comprobaciones
     for(let i = 0 ; i < arrFavs.length ; i++){
-      if(favObj.id === arrFavs[i].id){ // Borro el item que tenga ese id de mi array de favs
-        arrFavs.splice(i, 1);
+      if(arrFavs[i].id !== idItem){ // Si el id del index es diferente al del item = no existe en mi array (quiero agregarlo)
+        addFav = true;
+      }else{ // Si el id del index si coincide = ya existe en el array (no quiero volver a agregarlo)
+        addFav = false;
         break;
       }
-      // Vuelvo a renderizar favoritos
-      renderFavs(arrFavs);
-      // Actualizo el localStorage
-      setInLocalStorage(arrFavs);
+    }
+    if(addFav === true){ // Solo cuando es true agrego el item a mi array de favoritos
+      arrFavs.push(favObj);
     }
   }
-
   return arrFavs;
 }
 
