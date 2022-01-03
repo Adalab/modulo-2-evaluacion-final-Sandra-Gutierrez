@@ -4,11 +4,14 @@ body{
 .header{
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,1) 36%, rgba(194,4,134,1) 91%);
-    padding: 20px 200px;
+    padding: 18px 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: roboto;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
     &__title{
         color: white;
         font-weight: 100;
