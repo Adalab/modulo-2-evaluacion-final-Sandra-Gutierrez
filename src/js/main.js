@@ -27,6 +27,13 @@ function handlerClickReset(event){
   event.preventDefault();
   // Inicializo mi array de favs
   arrFavs = [];
+  // Elimino la clase favorit de mis resultados
+  let listResults = document.querySelectorAll('.js-itemList');
+  for(let i = 0 ; i < listResults.length ; i++){
+    if(listResults[i].classList.contains('favorit')){
+      listResults[i].classList.toggle('favorit');
+    }
+  }
   // Vuelvo a renderizar favoritos
   renderFavs(arrFavs);
   // Actualizo el localStorage
@@ -40,7 +47,6 @@ function handlerClickDeleteFav(event){
   const idDeleteFav = elementDeleteFav.id;
   // Elimino la clase favorit del item de resultados comparando con mi ul
   let listResults = document.querySelectorAll('.js-itemList');
-  console.log(listResults);
   for(let i = 0 ; i < listResults.length ; i++){
     if(idDeleteFav === listResults[i].id){
       console.log('Coincide');
