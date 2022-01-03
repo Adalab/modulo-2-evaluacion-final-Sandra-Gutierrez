@@ -7,6 +7,7 @@ const btnSearch = document.querySelector('.js-btnSearch');
 const btnReset = document.querySelector('.js-btnReset');
 const listFav = document.querySelector('.js-listFav');
 const listRes = document.querySelector('.js-listRes');
+const imgEmptyFavs = document.querySelector('.js-imageFav');
 let anime = '';
 let arrFavs = [];
 let arrResults;
@@ -40,6 +41,8 @@ function handlerClickReset(event){
   setInLocalStorage(arrFavs);
   // Borro boton
   showBtnReset();
+  // Oculto img de lista vacia
+  hiddenImgEmpyFavs();
 }
 
 
@@ -118,6 +121,17 @@ function showBtnReset(){
 }
 showBtnReset();
 
+// Oculto imagen de lista vacia
+function hiddenImgEmpyFavs(){
+  if(arrFavs.length !== 0){
+    imgEmptyFavs.classList.add('hidden');
+  }else{
+    imgEmptyFavs.classList.remove('hidden');
+  }
+}
+hiddenImgEmpyFavs();
+
+
 // Guardo en localStorage
 function setInLocalStorage(arrFavs){
   const stringifyArrFavs = JSON.stringify(arrFavs);
@@ -132,6 +146,8 @@ function renderFavs(arr){
   }
   // Muestro boton reset
   showBtnReset();
+  // Oculto img de lista vacia
+  hiddenImgEmpyFavs();
   // Añado el listener a los botones de borrar
   const deleteBtn = document.querySelectorAll('.js-deleteBtn');
   for(let i = 0 ; i < deleteBtn.length ; i++){
