@@ -26,7 +26,7 @@ body{
             box-shadow: 1px 1px 5px grey;
         }
         &--search{
-            padding: 5px 15px;
+            padding: 3px 15px;
             background-color: black;
             border: none;
             color: white;
@@ -34,6 +34,13 @@ body{
             font-family: 'Roboto';
             cursor: pointer;
             font-size: 14px;
+            border: 1px solid black;
+            &:hover{
+                background-color: transparent;
+                color: white;
+                border: 1px solid white;
+                //font-weight: 600;
+            }
         }
     }
 }

@@ -22,6 +22,9 @@
             text-transform: uppercase;
             cursor: pointer;
             font-size: 12px;
+            &:hover{
+                background-color: #c20486;
+            }
         }
     }
     &__list{
@@ -56,6 +59,9 @@
             right: 0;
             background-color: white;
             border-radius: 50%;
+            &:hover{
+                color: #c20486;
+            }
         }
     }
 }
