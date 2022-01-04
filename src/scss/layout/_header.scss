@@ -16,6 +16,13 @@ body{
         color: white;
         font-weight: 100;
         font-size: 34px;
+        @media all and (max-width:1000px) {
+            margin-bottom: 15px;
+        }
+        @media all and (max-width:575px) {
+            font-size: 24px;
+            text-align: center;
+        }
     }
     &__form{
         display: flex;
@@ -27,6 +34,10 @@ body{
             border: 1px solid transparent;
             margin-right: 20px;
             box-shadow: 1px 1px 5px grey;
+            @media all and (max-width:575px) {
+                width: 200px;
+                margin-right: 10px;
+            }
         }
         &--search{
             padding: 3px 15px;
@@ -42,8 +53,23 @@ body{
                 background-color: transparent;
                 color: white;
                 border: 1px solid white;
-                //font-weight: 600;
+            }
+            @media all and (max-width:575px) {
+                font-size: 10px;
+                padding: 6px 10px;
             }
         }
+        @media all and (max-width:1000px) {
+            margin-bottom: 15px;
+        }
+    }
+    @media all and (max-width:1350px) {
+        padding: 18px 20px;
+    }
+    @media all and (max-width:1000px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
 }

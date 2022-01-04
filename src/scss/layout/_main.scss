@@ -3,6 +3,15 @@
     display: flex;
     padding: 100px 200px;
     font-family: 'Roboto';
+    @media all and (max-width:1350px) {
+        padding: 100px 20px;
+    }
+    @media all and (max-width:1000px) {
+        padding: 150px 20px;
+    }
+    @media all and (max-width:575px) {
+        flex-direction: column;
+    }
 }
 .sectionFav{
     width: 25vw;
@@ -36,6 +45,10 @@
         & img{
             width: 110px;
             margin: 20px 5px 20px 15px;
+            @media all and (max-width:575px) {
+                width: 80px;
+                margin: 0px 5px 20px 15px;
+            }
         }
         &--title{
             font-size: 14px;
@@ -45,6 +58,9 @@
         &--subtitle{
             font-size: 14px;
             text-align: center;
+            @media all and (max-width:575px) {
+                margin-bottom: 10px;
+            }
         }
     }
     &__list{
@@ -63,6 +79,9 @@
             & img {
                 width: 100px;
                 margin-bottom: 5px;
+                @media all and (max-width:575px) {
+                    width: 60px;
+                }
             }
             & p {
                 font-size: 12px;
@@ -83,6 +102,14 @@
                 color: #c20486;
             }
         }
+        @media all and (max-width:575px) {
+            justify-content: center;
+        }
+    }
+    @media all and (max-width:575px) {
+        width: 90vw;
+        border-right: none;
+        border-bottom: 2px solid black;
     }
 }
 .sectionRes{
@@ -107,6 +134,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         cursor: pointer;
+        justify-content: center;
         &--item{
             background-color: white;
             padding: 5px;
@@ -114,11 +142,19 @@
             text-align: center;
             width: min-content;
             box-shadow: 6px 6px 3px #2d2d2d;
+            & img{
+                @media all and (max-width:575px) {
+                    width: 120px;
+                }
+            }
             & p{
                 font-size: 14px;
                 padding: 5px 0px;
             }
         }
+    }
+    @media all and (max-width:575px) {
+        width: 90vw;
     }
 }
 .favorit{
