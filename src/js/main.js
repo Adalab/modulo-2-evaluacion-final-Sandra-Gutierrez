@@ -9,9 +9,11 @@ const listFav = document.querySelector('.js-listFav');
 const listRes = document.querySelector('.js-listRes');
 const imgEmptyFavs = document.querySelector('.js-imageFav');
 const imgSearchAnimes = document.querySelector('.js-imageFront');
+const totalResults = document.querySelector('.js-totalResults');
 let anime = '';
 let arrFavs = [];
 let arrResults = [];
+let arrFix = [20, 50, 56];
 
 // FUNCTIONS:
 // Leo localStorage y renderizo favs si al cachear encuentro favs
@@ -194,12 +196,15 @@ function getAnimeResults(){
         arrResults = data.results;
         // Elimino texto e imagen de portada
         hiddenImgSearchAnimes();
+        // Renderizo numero total de resultados
+        totalResults.innerHTML = `El total de resultados es ${arrResults.length}`;
         // Renderizo en HTML la portada y el titulo
         for(let i = 0; i < arrResults.length ; i++){
           const imgAnime = data.results[i].image_url;
           const titleAnime = data.results[i].title;
+          const starDate = data.results[i].start_date;
           const idAnime = data.results[i].mal_id;
-          const itemList = `<li id='${idAnime}' class='js-itemList sectionRes__list--item'><img src="${imgAnime}"><p>${titleAnime}</p></li>`;
+          const itemList = `<li id='${idAnime}' class='js-itemList sectionRes__list--item'><img src="${imgAnime}"><p>${titleAnime}</p><p>${starDate}</p></li>`;
           listRes.innerHTML += itemList;
         }
         // Añado evento click a los elementos de mi lista
@@ -218,7 +223,6 @@ function getAnimeResults(){
         }
       });
   }
-  
 }
 
 function handlerClickSearch(event){
@@ -229,6 +233,19 @@ function handlerClickSearch(event){
   getAnimeResults();
 }
 
+function handlerClickPar(){
+  for( const item of arrFix ){
+    if(item === arrResults.length){
+      console.log('Item es igual a la longitud');
+    }else if(item < arrResults.length){
+      console.log('Item es menor que la longitud');
+    }else if(item > arrResults.length){
+      console.log('Item es mayor que la longitud');
+    }
+ }
+}
+
 // LISTENERS
 btnSearch.addEventListener('click', handlerClickSearch);
 btnReset.addEventListener('click', handlerClickReset);
+totalResults.addEventListener('click', handlerClickPar);
