@@ -242,7 +242,7 @@ function handlerClickPar(){
     }else if(item > arrResults.length){
       console.log('Item es mayor que la longitud');
     }
- }
+  }
 }
 
 // LISTENERS
